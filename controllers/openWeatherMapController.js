@@ -42,8 +42,6 @@ const currentWeather = async (req, res) => {
          `${apis.OpenWeatherMap}?lat=${latitude}&lon=${longitude}&units=${units}&appid=${process.env.API_KEY}`
       );
 
-      console.log("data: ", data);
-
       const result = {
          cityName: data.name,
          temperature: Math.round(data.main.temp),
@@ -54,7 +52,6 @@ const currentWeather = async (req, res) => {
          date: timestampToDDMMMYYY(data.dt, data.timezone),
          sunset: timestampToHHmm(data.sys.sunset, data.timezone),
       };
-      console.log("result: ", result);
 
       await locations.create({
          name: result.cityName,
